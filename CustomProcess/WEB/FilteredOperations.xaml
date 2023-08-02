@@ -1,0 +1,1030 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="FilteredOperations" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_WorkflowName" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="Dictionary structure to store configuration data of the process (settings, constants and assets)." Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
+    <x:Property Name="in_DtRow_TransactionListItem" Type="InArgument(sd:DataRow)" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1215,4320</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>FilteredOperations_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>UiPath.UIAutomationCore.Contracts</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>UiPath.UIAutomationNext.Enums</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>UiPath.Workflow</AssemblyReference>
+      <AssemblyReference>NPOI</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>System.Data.SqlClient</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.ViewModels</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="FilteredOperations" sap:VirtualizedContainerService.HintSize="608,4255" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="Durum" />
+      <Variable x:TypeArguments="x:String" Name="Tipi" />
+      <Variable x:TypeArguments="x:String" Name="Sehir" />
+      <Variable x:TypeArguments="x:String" Name="Min_Fiyat" />
+      <Variable x:TypeArguments="x:String" Name="Max_Fiyat" />
+      <Variable x:TypeArguments="x:String" Name="OdaSayisi" />
+      <Variable x:TypeArguments="x:String" Name="BrowserUrl_FilteredPage" />
+      <Variable x:TypeArguments="x:String" Name="AtachBrowserSahibindenSelector" />
+      <Variable x:TypeArguments="x:String" Name="DurumSelector" />
+      <Variable x:TypeArguments="x:String" Name="TipiSelector" />
+      <Variable x:TypeArguments="x:String" Name="SehirSelector" />
+      <Variable x:TypeArguments="x:String" Name="Min_FiyatSelector" />
+      <Variable x:TypeArguments="x:String" Name="Max_FiyatSelector" />
+      <Variable x:TypeArguments="x:String" Name="OdaSayisiSelector" />
+      <Variable x:TypeArguments="x:String" Name="AraButtonSelector" />
+      <Variable x:TypeArguments="x:String" Name="OdaSayisiBoxSelector" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <Sequence DisplayName="Init" sap:VirtualizedContainerService.HintSize="546,708" sap2010:WorkflowViewState.IdRef="Sequence_2">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="x:String" Default="[&quot;Workflow: &quot;+in_WorkflowName+&quot; --&gt; Init sekans, &quot;]" Name="BeginMessageInit" />
+      </Sequence.Variables>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="450,94" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[BeginMessageInit+&quot;sekansa giriş yapılmıştır.&quot;]" />
+      <Sequence DisplayName="Sequence: Filtered Info Names" sap:VirtualizedContainerService.HintSize="450,83" sap2010:WorkflowViewState.IdRef="Sequence_6">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <Assign sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_1">
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:String">[Durum]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:String">[in_DtRow_TransactionListItem.Item(in_Config("Durum").ToString.Trim()).ToString]</InArgument>
+          </Assign.Value>
+        </Assign>
+        <Assign sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_2">
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:String">[Tipi]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:String">[in_DtRow_TransactionListItem.Item(in_Config("Tipi").ToString.Trim()).ToString]</InArgument>
+          </Assign.Value>
+        </Assign>
+        <Assign sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_3">
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:String">[Sehir]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:String">[in_DtRow_TransactionListItem.Item(in_Config("Sehir").ToString.Trim).ToString]</InArgument>
+          </Assign.Value>
+        </Assign>
+        <Assign sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_4">
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:String">[Min_Fiyat]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:String">[in_DtRow_TransactionListItem.Item(in_Config("Min_Fiyat").ToString.Trim()).ToString]</InArgument>
+          </Assign.Value>
+        </Assign>
+        <Assign sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_5">
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:String">[Max_Fiyat]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:String">[in_DtRow_TransactionListItem.Item(in_Config("Max_Fiyat").ToString.Trim()).ToString]</InArgument>
+          </Assign.Value>
+        </Assign>
+        <Assign sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_6">
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:String">[OdaSayisi]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:String">[in_DtRow_TransactionListItem.Item(in_Config("OdaSayisi").ToString.Trim()).ToString]</InArgument>
+          </Assign.Value>
+        </Assign>
+      </Sequence>
+      <Sequence DisplayName="Sequence: Filtered Info Selectors" sap:VirtualizedContainerService.HintSize="450,83" sap2010:WorkflowViewState.IdRef="Sequence_7">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <Assign sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_9">
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:String">[DurumSelector]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:String">[in_Config("DurumSelector").ToString.Trim()]</InArgument>
+          </Assign.Value>
+        </Assign>
+        <Assign sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_10">
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:String">[TipiSelector]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:String">[in_Config("TipiSelector").ToString.Trim()]</InArgument>
+          </Assign.Value>
+        </Assign>
+        <Assign sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_11">
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:String">[SehirSelector]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:String">[in_Config("SehirSelector").ToString.Trim()]</InArgument>
+          </Assign.Value>
+        </Assign>
+        <Assign sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_12">
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:String">[Min_FiyatSelector]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:String">[in_Config("Min_FiyatSelector").ToString.Trim()]</InArgument>
+          </Assign.Value>
+        </Assign>
+        <Assign sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_13">
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:String">[Max_FiyatSelector]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:String">[in_Config("Max_FiyatSelector").ToString.Trim()]</InArgument>
+          </Assign.Value>
+        </Assign>
+        <Assign sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_16">
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:String">[OdaSayisiBoxSelector]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:String">[in_Config("OdaSayisiBoxSelector").ToString.Trim()]</InArgument>
+          </Assign.Value>
+        </Assign>
+        <Assign sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_14">
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:String">[OdaSayisiSelector]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:String">[in_Config("OdaSayisiSelector").ToString.Trim()]</InArgument>
+          </Assign.Value>
+        </Assign>
+        <Assign sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_17">
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:String">[OdaSayisiSelector]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:String">[String.Format(OdaSayisiSelector,OdaSayisi)]</InArgument>
+          </Assign.Value>
+        </Assign>
+        <Assign sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_15">
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:String">[AraButtonSelector]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:String">[in_Config("AraButtonSelector").ToString.Trim()]</InArgument>
+          </Assign.Value>
+        </Assign>
+      </Sequence>
+      <Sequence DisplayName="Sequence: Browser URL" sap:VirtualizedContainerService.HintSize="450,83" sap2010:WorkflowViewState.IdRef="Sequence_8">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_7">
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:String">[BrowserUrl_FilteredPage]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:String">[in_Config("BrowserUrl_FilteredPage").ToString.Trim()]</InArgument>
+          </Assign.Value>
+        </Assign>
+        <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_8">
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:String">[AtachBrowserSahibindenSelector]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:String">[in_Config("AtachBrowserSahibindenSelector").ToString.Trim()]</InArgument>
+          </Assign.Value>
+        </Assign>
+      </Sequence>
+      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="450,94" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[BeginMessageInit+&quot;sekanstan çıkış yapılmıştır.&quot;]" />
+    </Sequence>
+    <Sequence DisplayName="Perform" sap:VirtualizedContainerService.HintSize="546,3273" sap2010:WorkflowViewState.IdRef="Sequence_3">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="x:String" Default="[&quot;Workflow: &quot;+in_WorkflowName+&quot; --&gt; Perform sekans, &quot;]" Name="BeginMessagePerform" />
+      </Sequence.Variables>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="484,94" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[BeginMessagePerform+&quot;sekansa giriş yapılmıştır.&quot;]" />
+      <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Attach Browser: Sahibinden Filtered Page" sap:VirtualizedContainerService.HintSize="484,414" sap2010:WorkflowViewState.IdRef="BrowserScope_4" Selector="[AtachBrowserSahibindenSelector]" TimeoutMS="4000">
+        <ui:BrowserScope.Body>
+          <ActivityAction x:TypeArguments="x:Object">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+            </ActivityAction.Argument>
+            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="450,305" sap2010:WorkflowViewState.IdRef="Sequence_5">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:NavigateTo Browser="{x:Null}" DisplayName="Navigate To" sap:VirtualizedContainerService.HintSize="388,60" sap2010:WorkflowViewState.IdRef="NavigateTo_1" Url="[BrowserUrl_FilteredPage]" />
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="388,94" sap2010:WorkflowViewState.IdRef="LogMessage_7" Level="Info" Message="[&quot;Sahibinden sitesinde Filtered yapılacak sayfaya Navigate olundu.&quot;]" />
+            </Sequence>
+          </ActivityAction>
+        </ui:BrowserScope.Body>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </ui:BrowserScope>
+      <Sequence DisplayName="SelectItemSelector: Durum Combo Box " sap:VirtualizedContainerService.HintSize="484,83" sap2010:WorkflowViewState.IdRef="Sequence_11">
+        <Sequence.Variables>
+          <Variable x:TypeArguments="x:Boolean" Name="isExists_Selector" />
+        </Sequence.Variables>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="435,92" sap2010:WorkflowViewState.IdRef="LogMessage_8" Level="Info" Message="[BeginMessagePerform+&quot;SelectItemSelector: Durum Combo Box sekansına giriş yapılıyor.&quot;]" />
+        <ui:UiElementExists DisplayName="Element Exists : Durum Selector " Exists="[isExists_Selector]" sap:VirtualizedContainerService.HintSize="435,87" sap2010:WorkflowViewState.IdRef="UiElementExists_1">
+          <ui:UiElementExists.Target>
+            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="e15b6474-2c23-4ac3-988f-c2583ec92acc" Selector="[DurumSelector]" WaitForReady="COMPLETE">
+              <ui:Target.TimeoutMS>
+                <InArgument x:TypeArguments="x:Int32" />
+              </ui:Target.TimeoutMS>
+            </ui:Target>
+          </ui:UiElementExists.Target>
+        </ui:UiElementExists>
+        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="435,92" sap2010:WorkflowViewState.IdRef="LogMessage_9" Level="Info" Message="[BeginMessagePerform+&quot;Element exists ile selector aranmıştır. Durum: &quot;+isExists_Selector.ToString]" />
+        <If Condition="[isExists_Selector]" DisplayName="If : isExists_Selector" sap:VirtualizedContainerService.HintSize="435,962" sap2010:WorkflowViewState.IdRef="If_1">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <If.Then>
+            <Sequence DisplayName="isExists_Selector---TRUE" sap:VirtualizedContainerService.HintSize="401,467" sap2010:WorkflowViewState.IdRef="Sequence_10">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="359,92" sap2010:WorkflowViewState.IdRef="LogMessage_10" Level="Info" Message="[BeginMessagePerform+&quot;Selector bulunmuştur. Yazma işlemi yapılacaktır.&quot;]" />
+              <ui:SelectItem AlterIfDisabled="{x:Null}" ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" Items="{x:Null}" DisplayName="Select Item" sap:VirtualizedContainerService.HintSize="359,115" sap2010:WorkflowViewState.IdRef="SelectItem_1" Item="[Durum]">
+                <ui:SelectItem.Target>
+                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="07cbc894-4893-4633-8b26-1a46f52ffbd9" Selector="[DurumSelector]" WaitForReady="[WaitForReady.COMPLETE]">
+                    <ui:Target.TimeoutMS>
+                      <InArgument x:TypeArguments="x:Int32" />
+                    </ui:Target.TimeoutMS>
+                  </ui:Target>
+                </ui:SelectItem.Target>
+              </ui:SelectItem>
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="359,92" sap2010:WorkflowViewState.IdRef="LogMessage_11" Level="Info" Message="[BeginMessagePerform+&quot;Yazma işlemi yapılmıştır.&quot;]" />
+            </Sequence>
+          </If.Then>
+          <If.Else>
+            <Sequence DisplayName="isExists_ClickSelector---FALSE" sap:VirtualizedContainerService.HintSize="376,313" sap2010:WorkflowViewState.IdRef="Sequence_9">
+              <Sequence.Variables>
+                <Variable x:TypeArguments="x:Boolean" Name="isImageExists_ClickSelector" />
+              </Sequence.Variables>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,94" sap2010:WorkflowViewState.IdRef="LogMessage_12" Level="Info" Message="[BeginMessagePerform+&quot;Selector element exists ile bulunamamıştır.&quot;]" />
+              <Throw DisplayName="Throw : Selector---YOK" Exception="[new Exception(&quot;Durum elementi selector bulunamamıştır.&quot;)]" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="Throw_1" />
+            </Sequence>
+          </If.Else>
+        </If>
+        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="435,94" sap2010:WorkflowViewState.IdRef="LogMessage_13" Level="Info" Message="[BeginMessagePerform+&quot;SelectItemSelector: Durum Combo Box sekansından çıkış yapılmıştır.&quot;]" />
+      </Sequence>
+      <Sequence DisplayName="SelectItemSelector: Tipi Combo Box " sap:VirtualizedContainerService.HintSize="484,83" sap2010:WorkflowViewState.IdRef="Sequence_12">
+        <Sequence.Variables>
+          <Variable x:TypeArguments="x:Boolean" Name="isExists_Selector" />
+        </Sequence.Variables>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="435,94" sap2010:WorkflowViewState.IdRef="LogMessage_14" Level="Info" Message="[BeginMessagePerform+&quot;SelectItemSelector: Tipi Combo Box sekansına giriş yapılıyor.&quot;]" />
+        <ui:UiElementExists DisplayName="Element Exists : Tipi Selector " Exists="[isExists_Selector]" sap:VirtualizedContainerService.HintSize="435,87" sap2010:WorkflowViewState.IdRef="UiElementExists_2">
+          <ui:UiElementExists.Target>
+            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="e15b6474-2c23-4ac3-988f-c2583ec92acc" Selector="[TipiSelector]" WaitForReady="COMPLETE">
+              <ui:Target.TimeoutMS>
+                <InArgument x:TypeArguments="x:Int32" />
+              </ui:Target.TimeoutMS>
+            </ui:Target>
+          </ui:UiElementExists.Target>
+        </ui:UiElementExists>
+        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="435,94" sap2010:WorkflowViewState.IdRef="LogMessage_15" Level="Info" Message="[BeginMessagePerform+&quot;Element exists ile selector aranmıştır. Durum: &quot;+isExists_Selector.ToString]" />
+        <If Condition="[isExists_Selector]" DisplayName="If : isExists_Selector" sap:VirtualizedContainerService.HintSize="435,967" sap2010:WorkflowViewState.IdRef="If_2">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <If.Then>
+            <Sequence DisplayName="isExists_Selector---TRUE" sap:VirtualizedContainerService.HintSize="401,471" sap2010:WorkflowViewState.IdRef="Sequence_14">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="359,94" sap2010:WorkflowViewState.IdRef="LogMessage_16" Level="Info" Message="[BeginMessagePerform+&quot;Selector bulunmuştur. Yazma işlemi yapılacaktır.&quot;]" />
+              <ui:SelectItem AlterIfDisabled="{x:Null}" ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" Items="{x:Null}" DisplayName="Select Item" sap:VirtualizedContainerService.HintSize="359,115" sap2010:WorkflowViewState.IdRef="SelectItem_2" Item="[Tipi]">
+                <ui:SelectItem.Target>
+                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="07cbc894-4893-4633-8b26-1a46f52ffbd9" Selector="[TipiSelector]" WaitForReady="COMPLETE">
+                    <ui:Target.TimeoutMS>
+                      <InArgument x:TypeArguments="x:Int32" />
+                    </ui:Target.TimeoutMS>
+                  </ui:Target>
+                </ui:SelectItem.Target>
+              </ui:SelectItem>
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="359,94" sap2010:WorkflowViewState.IdRef="LogMessage_17" Level="Info" Message="[BeginMessagePerform+&quot;Yazma işlemi yapılmıştır.&quot;]" />
+            </Sequence>
+          </If.Then>
+          <If.Else>
+            <Sequence DisplayName="isExists_ClickSelector---FALSE" sap:VirtualizedContainerService.HintSize="376,313" sap2010:WorkflowViewState.IdRef="Sequence_13">
+              <Sequence.Variables>
+                <Variable x:TypeArguments="x:Boolean" Name="isImageExists_ClickSelector" />
+              </Sequence.Variables>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,94" sap2010:WorkflowViewState.IdRef="LogMessage_18" Level="Info" Message="[BeginMessagePerform+&quot;Selector element exists ile bulunamamıştır.&quot;]" />
+              <Throw DisplayName="Throw : Selector---YOK" Exception="[new Exception(&quot;Tipi elementi selector bulunamadı&quot;)]" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="Throw_2" />
+            </Sequence>
+          </If.Else>
+        </If>
+        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="435,94" sap2010:WorkflowViewState.IdRef="LogMessage_19" Level="Info" Message="[BeginMessagePerform+&quot;SelectItemSelector: Tipi Combo Box sekansından çıkış yapılmıştır.&quot;]" />
+      </Sequence>
+      <Sequence DisplayName="SelectItemSelector: İl Combo Box " sap:VirtualizedContainerService.HintSize="484,83" sap2010:WorkflowViewState.IdRef="Sequence_15">
+        <Sequence.Variables>
+          <Variable x:TypeArguments="x:Boolean" Name="isExists_Selector" />
+        </Sequence.Variables>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="435,94" sap2010:WorkflowViewState.IdRef="LogMessage_20" Level="Info" Message="[BeginMessagePerform+&quot;SelectItemSelector: İl Combo Box sekansına giriş yapılıyor.&quot;]" />
+        <ui:UiElementExists DisplayName="Element Exists : Tipi Selector " Exists="[isExists_Selector]" sap:VirtualizedContainerService.HintSize="435,87" sap2010:WorkflowViewState.IdRef="UiElementExists_3">
+          <ui:UiElementExists.Target>
+            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="e15b6474-2c23-4ac3-988f-c2583ec92acc" Selector="[SehirSelector]" WaitForReady="COMPLETE">
+              <ui:Target.TimeoutMS>
+                <InArgument x:TypeArguments="x:Int32" />
+              </ui:Target.TimeoutMS>
+            </ui:Target>
+          </ui:UiElementExists.Target>
+        </ui:UiElementExists>
+        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="435,94" sap2010:WorkflowViewState.IdRef="LogMessage_21" Level="Info" Message="[BeginMessagePerform+&quot;Element exists ile selector aranmıştır. Durum: &quot;+isExists_Selector.ToString]" />
+        <If Condition="[isExists_Selector]" DisplayName="If : isExists_Selector" sap:VirtualizedContainerService.HintSize="435,967" sap2010:WorkflowViewState.IdRef="If_3">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <If.Then>
+            <Sequence DisplayName="isExists_Selector---TRUE" sap:VirtualizedContainerService.HintSize="401,471" sap2010:WorkflowViewState.IdRef="Sequence_17">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="359,94" sap2010:WorkflowViewState.IdRef="LogMessage_22" Level="Info" Message="[BeginMessagePerform+&quot;Selector bulunmuştur. Yazma işlemi yapılacaktır.&quot;]" />
+              <ui:SelectItem AlterIfDisabled="{x:Null}" ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" Items="{x:Null}" DisplayName="Select Item" sap:VirtualizedContainerService.HintSize="359,115" sap2010:WorkflowViewState.IdRef="SelectItem_3" Item="[Sehir]">
+                <ui:SelectItem.Target>
+                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="07cbc894-4893-4633-8b26-1a46f52ffbd9" Selector="[SehirSelector]" WaitForReady="COMPLETE">
+                    <ui:Target.TimeoutMS>
+                      <InArgument x:TypeArguments="x:Int32" />
+                    </ui:Target.TimeoutMS>
+                  </ui:Target>
+                </ui:SelectItem.Target>
+              </ui:SelectItem>
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="359,94" sap2010:WorkflowViewState.IdRef="LogMessage_23" Level="Info" Message="[BeginMessagePerform+&quot;Yazma işlemi yapılmıştır.&quot;]" />
+            </Sequence>
+          </If.Then>
+          <If.Else>
+            <Sequence DisplayName="isExists_ClickSelector---FALSE" sap:VirtualizedContainerService.HintSize="376,313" sap2010:WorkflowViewState.IdRef="Sequence_16">
+              <Sequence.Variables>
+                <Variable x:TypeArguments="x:Boolean" Name="isImageExists_ClickSelector" />
+              </Sequence.Variables>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,94" sap2010:WorkflowViewState.IdRef="LogMessage_24" Level="Info" Message="[BeginMessagePerform+&quot;Selector element exists ile bulunamamıştır.&quot;]" />
+              <Throw DisplayName="Throw : Selector---YOK" Exception="[new Exception(&quot;İl elementi selector bulunamadı&quot;)]" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="Throw_3" />
+            </Sequence>
+          </If.Else>
+        </If>
+        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="435,94" sap2010:WorkflowViewState.IdRef="LogMessage_25" Level="Info" Message="[BeginMessagePerform+&quot;SelectItemSelector: İl Combo Box sekansından çıkış yapılmıştır.&quot;]" />
+      </Sequence>
+      <Sequence DisplayName="TypeIntoSelector: Min_Fiyat Type Into" sap:VirtualizedContainerService.HintSize="484,83" sap2010:WorkflowViewState.IdRef="Sequence_18">
+        <Sequence.Variables>
+          <Variable x:TypeArguments="x:Boolean" Name="isExists_Selector" />
+        </Sequence.Variables>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="410,92" sap2010:WorkflowViewState.IdRef="LogMessage_26" Level="Info" Message="[BeginMessagePerform+&quot;TypeIntoSelector: Min_Fiyat Type Into sekansına giriş yapılıyor.&quot;]" />
+        <ui:UiElementExists DisplayName="Element Exists : Tipi Selector " Exists="[isExists_Selector]" sap:VirtualizedContainerService.HintSize="410,87" sap2010:WorkflowViewState.IdRef="UiElementExists_4">
+          <ui:UiElementExists.Target>
+            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="e15b6474-2c23-4ac3-988f-c2583ec92acc" Selector="[Min_FiyatSelector]" WaitForReady="COMPLETE">
+              <ui:Target.TimeoutMS>
+                <InArgument x:TypeArguments="x:Int32" />
+              </ui:Target.TimeoutMS>
+            </ui:Target>
+          </ui:UiElementExists.Target>
+        </ui:UiElementExists>
+        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="410,92" sap2010:WorkflowViewState.IdRef="LogMessage_27" Level="Info" Message="[BeginMessagePerform+&quot;Element exists ile selector aranmıştır. Durum: &quot;+isExists_Selector.ToString]" />
+        <If Condition="[isExists_Selector]" DisplayName="If : isExists_Selector" sap:VirtualizedContainerService.HintSize="410,959" sap2010:WorkflowViewState.IdRef="If_4">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <If.Then>
+            <Sequence DisplayName="isExists_Selector---TRUE" sap:VirtualizedContainerService.HintSize="376,467" sap2010:WorkflowViewState.IdRef="Sequence_20">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,92" sap2010:WorkflowViewState.IdRef="LogMessage_28" Level="Info" Message="[BeginMessagePerform+&quot;Selector bulunmuştur. Yazma işlemi yapılacaktır.&quot;]" />
+              <ui:TypeInto AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" ClickBeforeTyping="True" DisplayName="Type Into : Selector" EmptyField="True" sap:VirtualizedContainerService.HintSize="334,115" sap2010:WorkflowViewState.IdRef="TypeInto_1" Text="[Min_Fiyat]">
+                <ui:TypeInto.Target>
+                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="c696ad4b-02fb-4455-921d-282a3c1e49bc" Selector="[Min_FiyatSelector]" WaitForReady="COMPLETE">
+                    <ui:Target.TimeoutMS>
+                      <InArgument x:TypeArguments="x:Int32" />
+                    </ui:Target.TimeoutMS>
+                  </ui:Target>
+                </ui:TypeInto.Target>
+              </ui:TypeInto>
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,92" sap2010:WorkflowViewState.IdRef="LogMessage_29" Level="Info" Message="[BeginMessagePerform+&quot;Yazma işlemi yapılmıştır.&quot;]" />
+            </Sequence>
+          </If.Then>
+          <If.Else>
+            <Sequence DisplayName="isExists_ClickSelector---FALSE" sap:VirtualizedContainerService.HintSize="376,310" sap2010:WorkflowViewState.IdRef="Sequence_19">
+              <Sequence.Variables>
+                <Variable x:TypeArguments="x:Boolean" Name="isImageExists_ClickSelector" />
+              </Sequence.Variables>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,92" sap2010:WorkflowViewState.IdRef="LogMessage_30" Level="Info" Message="[BeginMessagePerform+&quot;Selector element exists ile bulunamamıştır.&quot;]" />
+              <Throw DisplayName="Throw : Selector---YOK" Exception="[new Exception(&quot;Min_Fiyat elementinin selector bulunamadı&quot;)]" sap:VirtualizedContainerService.HintSize="334,90" sap2010:WorkflowViewState.IdRef="Throw_4" />
+            </Sequence>
+          </If.Else>
+        </If>
+        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="410,92" sap2010:WorkflowViewState.IdRef="LogMessage_31" Level="Info" Message="[BeginMessagePerform+&quot;TypeIntoSelector: Min_Fiyat Type Into sekansından çıkış yapılmıştır.&quot;]" />
+      </Sequence>
+      <Sequence DisplayName="TypeIntoSelector: Max_Fiyat Type Into" sap:VirtualizedContainerService.HintSize="484,83" sap2010:WorkflowViewState.IdRef="Sequence_21">
+        <Sequence.Variables>
+          <Variable x:TypeArguments="x:Boolean" Name="isExists_Selector" />
+        </Sequence.Variables>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="410,92" sap2010:WorkflowViewState.IdRef="LogMessage_32" Level="Info" Message="[BeginMessagePerform+&quot;TypeIntoSelector: Max_Fiyat Type Into sekansına giriş yapılıyor.&quot;]" />
+        <ui:UiElementExists DisplayName="Element Exists : Tipi Selector " Exists="[isExists_Selector]" sap:VirtualizedContainerService.HintSize="410,87" sap2010:WorkflowViewState.IdRef="UiElementExists_5">
+          <ui:UiElementExists.Target>
+            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="e15b6474-2c23-4ac3-988f-c2583ec92acc" Selector="[Max_FiyatSelector]" WaitForReady="COMPLETE">
+              <ui:Target.TimeoutMS>
+                <InArgument x:TypeArguments="x:Int32" />
+              </ui:Target.TimeoutMS>
+            </ui:Target>
+          </ui:UiElementExists.Target>
+        </ui:UiElementExists>
+        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="410,92" sap2010:WorkflowViewState.IdRef="LogMessage_33" Level="Info" Message="[BeginMessagePerform+&quot;Element exists ile selector aranmıştır. Durum: &quot;+isExists_Selector.ToString]" />
+        <If Condition="[isExists_Selector]" DisplayName="If : isExists_Selector" sap:VirtualizedContainerService.HintSize="410,649" sap2010:WorkflowViewState.IdRef="If_5">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <If.Then>
+            <Sequence DisplayName="isExists_Selector---TRUE" sap:VirtualizedContainerService.HintSize="376,467" sap2010:WorkflowViewState.IdRef="Sequence_23">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,92" sap2010:WorkflowViewState.IdRef="LogMessage_34" Level="Info" Message="[BeginMessagePerform+&quot;Selector bulunmuştur. Yazma işlemi yapılacaktır.&quot;]" />
+              <ui:TypeInto AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" ClickBeforeTyping="True" DisplayName="Type Into : Selector" EmptyField="True" sap:VirtualizedContainerService.HintSize="334,115" sap2010:WorkflowViewState.IdRef="TypeInto_2" Text="[Max_Fiyat]">
+                <ui:TypeInto.Target>
+                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="c696ad4b-02fb-4455-921d-282a3c1e49bc" Selector="[Max_FiyatSelector]" WaitForReady="COMPLETE">
+                    <ui:Target.TimeoutMS>
+                      <InArgument x:TypeArguments="x:Int32" />
+                    </ui:Target.TimeoutMS>
+                  </ui:Target>
+                </ui:TypeInto.Target>
+              </ui:TypeInto>
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,92" sap2010:WorkflowViewState.IdRef="LogMessage_35" Level="Info" Message="[BeginMessagePerform+&quot;Yazma işlemi yapılmıştır.&quot;]" />
+            </Sequence>
+          </If.Then>
+          <If.Else>
+            <Sequence DisplayName="isExists_ClickSelector---FALSE" sap:VirtualizedContainerService.HintSize="376,310" sap2010:WorkflowViewState.IdRef="Sequence_22">
+              <Sequence.Variables>
+                <Variable x:TypeArguments="x:Boolean" Name="isImageExists_ClickSelector" />
+              </Sequence.Variables>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,92" sap2010:WorkflowViewState.IdRef="LogMessage_36" Level="Info" Message="[BeginMessagePerform+&quot;Selector element exists ile bulunamamıştır.&quot;]" />
+              <Throw DisplayName="Throw : Selector---YOK" Exception="[new Exception(&quot;Max_Fiyat elementinin selector bulunamadı&quot;)]" sap:VirtualizedContainerService.HintSize="334,90" sap2010:WorkflowViewState.IdRef="Throw_5" />
+            </Sequence>
+          </If.Else>
+        </If>
+        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="410,92" sap2010:WorkflowViewState.IdRef="LogMessage_37" Level="Info" Message="[BeginMessagePerform+&quot;TypeIntoSelector: Max_Fiyat Type Into sekansından çıkış yapılmıştır.&quot;]" />
+      </Sequence>
+      <Sequence DisplayName="ClickSelector: Oda Sayisi Combo Box" sap:VirtualizedContainerService.HintSize="484,83" sap2010:WorkflowViewState.IdRef="Sequence_32">
+        <Sequence.Variables>
+          <Variable x:TypeArguments="x:Boolean" Name="isExists_ClickSelector" />
+        </Sequence.Variables>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="486,94" sap2010:WorkflowViewState.IdRef="LogMessage_53" Level="Info" Message="[BeginMessagePerform+&quot;ClickSelector: Oda Sayisi Combo Box sekansına giriş yapılıyor.&quot;]" />
+        <ui:UiElementExists DisplayName="Element Exists : ClickSelector Ara Button" Exists="[isExists_ClickSelector]" sap:VirtualizedContainerService.HintSize="486,87" sap2010:WorkflowViewState.IdRef="UiElementExists_8">
+          <ui:UiElementExists.Target>
+            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="e15b6474-2c23-4ac3-988f-c2583ec92acc" Selector="[OdaSayisiBoxSelector]" WaitForReady="COMPLETE">
+              <ui:Target.TimeoutMS>
+                <InArgument x:TypeArguments="x:Int32" />
+              </ui:Target.TimeoutMS>
+            </ui:Target>
+          </ui:UiElementExists.Target>
+        </ui:UiElementExists>
+        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="486,94" sap2010:WorkflowViewState.IdRef="LogMessage_54" Level="Info" Message="[BeginMessagePerform+&quot;Element exists ile selector aranmıştır. Durum: &quot;+isExists_ClickSelector.ToString]" />
+        <If Condition="[isExists_ClickSelector]" DisplayName="If : isExists_ClickSelector" sap:VirtualizedContainerService.HintSize="486,2003" sap2010:WorkflowViewState.IdRef="If_10">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <If.Then>
+            <Sequence DisplayName="isExists_ClickSelector---TRUE" sap:VirtualizedContainerService.HintSize="376,443" sap2010:WorkflowViewState.IdRef="Sequence_34">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,94" sap2010:WorkflowViewState.IdRef="LogMessage_55" Level="Info" Message="[BeginMessagePerform+&quot;Selector bulunmuştur. Tıklama işlemi yapılacaktır.&quot;]" />
+              <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click : ClickSelector Ara Button" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="Click_2" KeyModifiers="None" MouseButton="BTN_LEFT">
+                <ui:Click.CursorPosition>
+                  <ui:CursorPosition Position="Center">
+                    <ui:CursorPosition.OffsetX>
+                      <InArgument x:TypeArguments="x:Int32" />
+                    </ui:CursorPosition.OffsetX>
+                    <ui:CursorPosition.OffsetY>
+                      <InArgument x:TypeArguments="x:Int32" />
+                    </ui:CursorPosition.OffsetY>
+                  </ui:CursorPosition>
+                </ui:Click.CursorPosition>
+                <ui:Click.Target>
+                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="e30fd36b-266b-40a5-a298-f9b6714ed0de" Selector="[OdaSayisiBoxSelector]" WaitForReady="COMPLETE">
+                    <ui:Target.TimeoutMS>
+                      <InArgument x:TypeArguments="x:Int32" />
+                    </ui:Target.TimeoutMS>
+                  </ui:Target>
+                </ui:Click.Target>
+              </ui:Click>
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,94" sap2010:WorkflowViewState.IdRef="LogMessage_56" Level="Info" Message="[BeginMessagePerform+&quot;Tıklama işlemi yapılmıştır.&quot;]" />
+            </Sequence>
+          </If.Then>
+          <If.Else>
+            <Sequence DisplayName="isExists_ClickSelector---FALSE" sap:VirtualizedContainerService.HintSize="452,1377" sap2010:WorkflowViewState.IdRef="Sequence_33">
+              <Sequence.Variables>
+                <Variable x:TypeArguments="x:Boolean" Name="isImageExists_ClickSelector" />
+              </Sequence.Variables>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="410,94" sap2010:WorkflowViewState.IdRef="LogMessage_57" Level="Info" Message="[BeginMessagePerform+&quot;Element exists ile selector bulunamamıştır. Image exists ile aranacaktır.&quot;]" />
+              <ui:ImageFound DisplayName="Image Exists : ClickSelector" Found="[isImageExists_ClickSelector]" sap:VirtualizedContainerService.HintSize="410,107" sap2010:WorkflowViewState.IdRef="ImageFound_2">
+                <ui:ImageFound.Image>
+                  <ui:ImageTarget Image="{x:Null}" Accuracy="0.8" Profile="Basic" TargetImageBase64="iVBORw0KGgoAAAANSUhEUgAAAKAAAAAkCAYAAAAO7jHjAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAXDSURBVHhe7ZzNbttGFIX1Tn6u6C26Vg100WVRoJuu7AJ9BMPdFKkdx42FAuL/nyjZ2aXu4vaeOzPkjETJcmOxcXsPcEDOD4cTz5dDyZJnUucRiYuYmkNd9l5yWYxzceSdh243zo/iKqaVOPGchq7783aHpU+decfM1me0bgpq64KqPKUkXtBisaA0jqjIEiryhOoqp6Yu+VhQU5V8XsmxFhdUl70rcW5c5FQWGeUZxo0oSWKKo4giHh/3wNE32nK5Z7pt1Fvnacz34vk3JS3tvEuux/m6remejbaa54D+GffHsUQ/Nu6Bui3z/Lqj53Snoy0LgCFgSVDuAHPmRR42wPPhc+VtIAfBGTKDJLblcNy+TwgbW6BJaW3tANpyBXvg2fq11wd1bZ3TiqFbL0t2JYuFBUoiAwLgWzJ0LfcpMoaCFwVACXjsveAxdA68sjtmDJE1w4jFA4ACIUMXx3EHIdrQD5AIjNZS5nnkGcx1Kcq2zhoQ1nyvhue25P8wOAI4QOUAycQWNBjn1iFczzD/vJwnu0BrCv6hwt3Cf463oTFAmfquLnDS214n82GbsgPOgWbAWTdwHtq1ee4gFANSQMbm4727BmWkHYPXLmtatUteqJoXOLMJtOCFBLg5PbQlJwnDVjAwXI8fLoAy8JnFNfBZ6Dr4DHDu6ByUGQokooMuAYA2GTEHzMeBJ/B1sPn2IPLNQPSAIels2rl61+aX2YNgHWKeu6S7A9ABd/vumi4vL+ni4kKtPorB1/X1VZd+gHCCVLq9uab5/I4eHx9JpTqWwNf87k4gdCkoAIJMhU81hsAZeOsB5Mcv4lGlGkvgLUhABVA1psAb3jxF7AneUSqAqjEF3tw7+gl+5aEAqsaUS0B5BONTAwVQNabAW1WktKxzAJgogKpRBd7aphQrgKrRJQDW5vN0BVA1usBbU2biyapODwLw6vSETk56z97ahi21dPZmX/uwwvFndGXrVf89BQDiQ/f9ABqgTk49JOozmu6E8B8A+HZGJ2/O+ErV/0HgrS7wTZyUAWyeAFBgG0ikABoLqaTXlKYegAclG8YaarOgu+un5+ZuGNOdQ+351PwHCeYazumslsq+r+pF9PX3P9FX3/4Y+JsffratwwJvZRZTmSc0wVeP9gG4c8G8xQ77XNGMF307AfcnowPVByuQD3wAP+5nAfMBxPlAqiqAL6vL3z5sAYi6fQJvRYov8EYMYFt8JoCbYG2UpV+fYrsANDLw+mkYJGgAnR0LMLr5+QB2Y/XpBymAL6tPn/6k2XfnHXxIxMfHv2zrsARAhu8gAMNF9dSl0D4A/TTcn4C9+n4Cy2DqOZDOBmDfmCuu4zm4ZFUAX15+Cj6VfhB4yzkB4cnDUwBaIIJFs6nmFj54Tea3yblLoOcDKOnn7rsBoLtP8NpxCECWD50C+PJC4iH5Dkk/yACIb5MvDgHQKHgUevAZuccd+82MZh5o/XVTmp3y4m88EiGBwl3P3oRZ6k95XDk6eAyowWtGH0CbfMY9lArgcfTr+z/Eh6hPQAbwvi0PAvDLE6Dfhln15Qu8yZsQk4CvE0BNsterHkB5DfhaE1D1WhUm4KpSAFWjygC4UABV/44EQPd7wI+rWgFUjSrwVjJ8sAKoGl0CYI6tQWJ9BKvGlwGQE5AhVABVowu8Ve4R/NAqgKpxFQCIT0J+0a05VCPJbc1R8SMYlgT8/faG5vO5Qqg6qsAXNsG6eXfN8MVieQ0IA0IkIeJRrT6GkXzvGT7sxussCeiMDRZhB6VxTfhVzcf1Drv2oF+zYVvP7f54OHfur32+ZZ5b84a53R/fKwf3lHL/7zcu6X5pjfMhy46pMHZP3WFsdrmETfne2rSFxuaYTZURdiZ1W/Jic0j8ETeMPfVkg8ooImwFXJX4uwo2tgWWv7HoF9aUN+vYkjzm8Tdsk0xdmV+nifl8c6y+rxm3H9+7Htf57ex+B96Y/gZvypn+zSI8uQAAAABJRU5ErkJggg==" />
+                </ui:ImageFound.Image>
+                <ui:ImageFound.Target>
+                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="1461eb9e-0609-4e17-82b9-a26f1a0481c5" Selector="&lt;html app='chrome.exe' title='Emlak İlanları, Kiralık, Satılık Emlak Fiyatları sahibinden.com&amp;apos;da' /&gt;" WaitForReady="COMPLETE">
+                    <ui:Target.TimeoutMS>
+                      <InArgument x:TypeArguments="x:Int32" />
+                    </ui:Target.TimeoutMS>
+                  </ui:Target>
+                </ui:ImageFound.Target>
+              </ui:ImageFound>
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="410,94" sap2010:WorkflowViewState.IdRef="LogMessage_58" Level="Info" Message="[BeginMessagePerform+&quot;Image exists ile click selector aranmıştır. Durum: &quot;+isImageExists_ClickSelector.ToString]" />
+              <If Condition="[isImageExists_ClickSelector]" DisplayName="If : isImageExists_ClickSelector" sap:VirtualizedContainerService.HintSize="410,874" sap2010:WorkflowViewState.IdRef="If_9">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <If.Then>
+                  <Sequence DisplayName="isImageExists_ClickSelector---TRUE" sap:VirtualizedContainerService.HintSize="376,378" sap2010:WorkflowViewState.IdRef="Sequence_35">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:ClickImage ContinueOnError="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click Image : ClickSelector" sap:VirtualizedContainerService.HintSize="334,156" sap2010:WorkflowViewState.IdRef="ClickImage_2" KeyModifiers="None" MouseButton="BTN_LEFT">
+                      <ui:ClickImage.CursorPosition>
+                        <ui:CursorPosition Position="Center">
+                          <ui:CursorPosition.OffsetX>
+                            <InArgument x:TypeArguments="x:Int32" />
+                          </ui:CursorPosition.OffsetX>
+                          <ui:CursorPosition.OffsetY>
+                            <InArgument x:TypeArguments="x:Int32" />
+                          </ui:CursorPosition.OffsetY>
+                        </ui:CursorPosition>
+                      </ui:ClickImage.CursorPosition>
+                      <ui:ClickImage.Image>
+                        <ui:ImageTarget Image="{x:Null}" Accuracy="0.8" Profile="Basic" TargetImageBase64="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" />
+                      </ui:ClickImage.Image>
+                      <ui:ClickImage.Target>
+                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="465c523b-9bcc-4f41-897c-9fa8eca2061f" Selector="&lt;html app='chrome.exe' title='Emlak İlanları, Kiralık, Satılık Emlak Fiyatları sahibinden.com&amp;apos;da' /&gt;" WaitForReady="COMPLETE">
+                          <ui:Target.TimeoutMS>
+                            <InArgument x:TypeArguments="x:Int32" />
+                          </ui:Target.TimeoutMS>
+                        </ui:Target>
+                      </ui:ClickImage.Target>
+                    </ui:ClickImage>
+                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,94" sap2010:WorkflowViewState.IdRef="LogMessage_59" Level="Info" Message="[BeginMessagePerform+&quot;İmage exists ile selector bulunmuştur ve click image ile tıklanmıştır.&quot;]" />
+                  </Sequence>
+                </If.Then>
+                <If.Else>
+                  <Sequence DisplayName="isImageExists_ClickSelector---FALSE" sap:VirtualizedContainerService.HintSize="376,313" sap2010:WorkflowViewState.IdRef="Sequence_36">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,94" sap2010:WorkflowViewState.IdRef="LogMessage_60" Level="Info" Message="[BeginMessagePerform+&quot;Selector image exists ile bulunamamıştır.&quot;]" />
+                    <Throw DisplayName="Throw : Selector---YOK" Exception="[new Exception(&quot;Oda sayısı Combo Box elementine click yapılamamıştır.&quot;)]" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="Throw_8" />
+                  </Sequence>
+                </If.Else>
+              </If>
+            </Sequence>
+          </If.Else>
+        </If>
+        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="486,94" sap2010:WorkflowViewState.IdRef="LogMessage_61" Level="Info" Message="[BeginMessagePerform+&quot;ClickSelector: Oda Sayisi Combo Box sekansından çıkış yapılmıştır.&quot;]" />
+      </Sequence>
+      <Sequence DisplayName="ClickSelector: Oda Sayisi Info" sap:VirtualizedContainerService.HintSize="484,1579" sap2010:WorkflowViewState.IdRef="Sequence_37">
+        <Sequence.Variables>
+          <Variable x:TypeArguments="x:Boolean" Name="isExists_ClickSelector" />
+        </Sequence.Variables>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="410,94" sap2010:WorkflowViewState.IdRef="LogMessage_62" Level="Info" Message="[BeginMessagePerform+&quot;ClickSelector: Oda Sayisi Combo Box sekansına giriş yapılıyor.&quot;]" />
+        <ui:UiElementExists DisplayName="Element Exists : ClickSelector Ara Button" Exists="[isExists_ClickSelector]" sap:VirtualizedContainerService.HintSize="410,87" sap2010:WorkflowViewState.IdRef="UiElementExists_9">
+          <ui:UiElementExists.Target>
+            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="e15b6474-2c23-4ac3-988f-c2583ec92acc" Selector="[OdaSayisiSelector]" WaitForReady="COMPLETE">
+              <ui:Target.TimeoutMS>
+                <InArgument x:TypeArguments="x:Int32" />
+              </ui:Target.TimeoutMS>
+            </ui:Target>
+          </ui:UiElementExists.Target>
+        </ui:UiElementExists>
+        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="410,94" sap2010:WorkflowViewState.IdRef="LogMessage_63" Level="Info" Message="[BeginMessagePerform+&quot;Element exists ile selector aranmıştır. Durum: &quot;+isExists_ClickSelector.ToString]" />
+        <If Condition="[isExists_ClickSelector]" DisplayName="If : isExists_ClickSelector" sap:VirtualizedContainerService.HintSize="410,939" sap2010:WorkflowViewState.IdRef="If_11">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <If.Then>
+            <Sequence DisplayName="isExists_ClickSelector---TRUE" sap:VirtualizedContainerService.HintSize="376,443" sap2010:WorkflowViewState.IdRef="Sequence_39">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,94" sap2010:WorkflowViewState.IdRef="LogMessage_64" Level="Info" Message="[BeginMessagePerform+&quot;Selector bulunmuştur. Tıklama işlemi yapılacaktır.&quot;]" />
+              <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click : ClickSelector Ara Button" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="Click_3" KeyModifiers="None" MouseButton="BTN_LEFT">
+                <ui:Click.CursorPosition>
+                  <ui:CursorPosition Position="Center">
+                    <ui:CursorPosition.OffsetX>
+                      <InArgument x:TypeArguments="x:Int32" />
+                    </ui:CursorPosition.OffsetX>
+                    <ui:CursorPosition.OffsetY>
+                      <InArgument x:TypeArguments="x:Int32" />
+                    </ui:CursorPosition.OffsetY>
+                  </ui:CursorPosition>
+                </ui:Click.CursorPosition>
+                <ui:Click.Target>
+                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="e30fd36b-266b-40a5-a298-f9b6714ed0de" Selector="[OdaSayisiSelector]" WaitForReady="COMPLETE">
+                    <ui:Target.TimeoutMS>
+                      <InArgument x:TypeArguments="x:Int32" />
+                    </ui:Target.TimeoutMS>
+                  </ui:Target>
+                </ui:Click.Target>
+              </ui:Click>
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,94" sap2010:WorkflowViewState.IdRef="LogMessage_65" Level="Info" Message="[BeginMessagePerform+&quot;Tıklama işlemi yapılmıştır.&quot;]" />
+            </Sequence>
+          </If.Then>
+          <If.Else>
+            <Sequence DisplayName="isExists_ClickSelector---FALSE" sap:VirtualizedContainerService.HintSize="376,313" sap2010:WorkflowViewState.IdRef="Sequence_38">
+              <Sequence.Variables>
+                <Variable x:TypeArguments="x:Boolean" Name="isImageExists_ClickSelector" />
+              </Sequence.Variables>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,94" sap2010:WorkflowViewState.IdRef="LogMessage_69" Level="Info" Message="[BeginMessagePerform+&quot;Selector image exists ile bulunamamıştır.&quot;]" />
+              <Throw DisplayName="Throw : Selector---YOK" Exception="[new Exception(&quot;Oda sayısı seçilirken hata meydana gelmiştir.&quot;)]" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="Throw_9" />
+            </Sequence>
+          </If.Else>
+        </If>
+        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="410,94" sap2010:WorkflowViewState.IdRef="LogMessage_70" Level="Info" Message="[BeginMessagePerform+&quot;ClickSelector: Oda Sayisi Info sekansından çıkış yapılmıştır.&quot;]" />
+      </Sequence>
+      <Sequence DisplayName="ClickSelector: Ara Button Click" sap:VirtualizedContainerService.HintSize="484,83" sap2010:WorkflowViewState.IdRef="Sequence_31">
+        <Sequence.Variables>
+          <Variable x:TypeArguments="x:Boolean" Name="isExists_ClickSelector" />
+        </Sequence.Variables>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="486,92" sap2010:WorkflowViewState.IdRef="LogMessage_44" Level="Info" Message="[BeginMessagePerform+&quot;ClickSelector: Ara Button Click sekansına giriş yapılıyor.&quot;]" />
+        <ui:UiElementExists DisplayName="Element Exists : ClickSelector Ara Button" Exists="[isExists_ClickSelector]" sap:VirtualizedContainerService.HintSize="486,87" sap2010:WorkflowViewState.IdRef="UiElementExists_7">
+          <ui:UiElementExists.Target>
+            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="e15b6474-2c23-4ac3-988f-c2583ec92acc" Selector="[AraButtonSelector]" WaitForReady="COMPLETE">
+              <ui:Target.TimeoutMS>
+                <InArgument x:TypeArguments="x:Int32" />
+              </ui:Target.TimeoutMS>
+            </ui:Target>
+          </ui:UiElementExists.Target>
+        </ui:UiElementExists>
+        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="486,92" sap2010:WorkflowViewState.IdRef="LogMessage_45" Level="Info" Message="[BeginMessagePerform+&quot;Element exists ile selector aranmıştır. Durum: &quot;+isExists_ClickSelector.ToString]" />
+        <If Condition="[isExists_ClickSelector]" DisplayName="If : isExists_ClickSelector" sap:VirtualizedContainerService.HintSize="486,1996" sap2010:WorkflowViewState.IdRef="If_7">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <If.Then>
+            <Sequence DisplayName="isExists_ClickSelector---TRUE" sap:VirtualizedContainerService.HintSize="376,439" sap2010:WorkflowViewState.IdRef="Sequence_28">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,92" sap2010:WorkflowViewState.IdRef="LogMessage_46" Level="Info" Message="[BeginMessagePerform+&quot;Selector bulunmuştur. Tıklama işlemi yapılacaktır.&quot;]" />
+              <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click : ClickSelector Ara Button" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="Click_1" KeyModifiers="None" MouseButton="BTN_LEFT">
+                <ui:Click.CursorPosition>
+                  <ui:CursorPosition Position="Center">
+                    <ui:CursorPosition.OffsetX>
+                      <InArgument x:TypeArguments="x:Int32" />
+                    </ui:CursorPosition.OffsetX>
+                    <ui:CursorPosition.OffsetY>
+                      <InArgument x:TypeArguments="x:Int32" />
+                    </ui:CursorPosition.OffsetY>
+                  </ui:CursorPosition>
+                </ui:Click.CursorPosition>
+                <ui:Click.Target>
+                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="e30fd36b-266b-40a5-a298-f9b6714ed0de" Selector="[AraButtonSelector]" WaitForReady="COMPLETE">
+                    <ui:Target.TimeoutMS>
+                      <InArgument x:TypeArguments="x:Int32" />
+                    </ui:Target.TimeoutMS>
+                  </ui:Target>
+                </ui:Click.Target>
+              </ui:Click>
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,92" sap2010:WorkflowViewState.IdRef="LogMessage_47" Level="Info" Message="[BeginMessagePerform+&quot;Tıklama işlemi yapılmıştır.&quot;]" />
+            </Sequence>
+          </If.Then>
+          <If.Else>
+            <Sequence DisplayName="isExists_ClickSelector---FALSE" sap:VirtualizedContainerService.HintSize="452,1375" sap2010:WorkflowViewState.IdRef="Sequence_27">
+              <Sequence.Variables>
+                <Variable x:TypeArguments="x:Boolean" Name="isImageExists_ClickSelector" />
+              </Sequence.Variables>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="410,92" sap2010:WorkflowViewState.IdRef="LogMessage_48" Level="Info" Message="[BeginMessagePerform+&quot;Element exists ile selector bulunamamıştır. Image exists ile aranacaktır.&quot;]" />
+              <ui:ImageFound DisplayName="Image Exists : ClickSelector" Found="[isImageExists_ClickSelector]" sap:VirtualizedContainerService.HintSize="410,107" sap2010:WorkflowViewState.IdRef="ImageFound_1">
+                <ui:ImageFound.Image>
+                  <ui:ImageTarget Image="{x:Null}" Accuracy="0.8" Profile="Basic" TargetImageBase64="iVBORw0KGgoAAAANSUhEUgAAAFAAAAAVCAYAAADRhGlyAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAO2SURBVFhH7ZXZTxNRFMbn3zE++sCjD4oKKiEGV4gRH9wSkKiEEFTUFrRYNpEAbkgICKKxbEWpUJZCS2lpZYeUpZatgBShgK2QzzuLdKTVNIWpPPQmv3xz7jl37sw3c++lzucaEcB3qKinBgTwHSoqpwtROSTwpHRRIO/ez8tT557oEcB3qHPZXBBQn5Q6k9WJM1k6wn/QgiEU9yyi17KIxuZBXPR23C5SzsD/Q2ytFWM/wDTHlBnSAo3Hut0MdSqjA6cytAR/azfy+1fhZP0DnDbIytoQ4fX43aGcgf4n8o0ZHd8587hm0ekRK9Ew+UuySXR9c8L2fQU94yuwLjthnZpFyWczGsZWMEFim52wvIqhXjMe5HmeR2ioCKkGEekEv6oW91Q22DaIa3Yr6gdWWQcXvuLZSxVTd61mFhMOtnuz2aZQpbPBTl87nFheXme6sbEGjcKI03+dTzglBqrZwE1/I0C+YBDvJ9iXnzdqcLX8K6Z/0pEDmk9qnE3708AlswkiSRH2RL9CRGE/Pii1iIx5jr1JLaicpO+zjpFWNaLEZAvwZv4dzFMn0tpx4vE/ECB/pWoao8zh4UC/tg+l7TMYZH4rYpapD4mZKlyptsJCG7ixhOrXFdh3owZhEnq8FonVo6gftmGULHE7/ReTZtG3I1rU5DaX0O/HGuhXDMjt5h0eW9sPcpiUNuMy38BCGY6ktJGxemTqlzZNc6w54eAZeCG5cctcwkOFS1QIl7QR/KSFI1Av0G+9jvkJKwzDHKZ5WBhXyXJUdyBRNsMzsAqHUlQ4WUTGLrI1g80tOBqvQNk4uxWwBja4zyewUuGP6AuCX7QdCU0Lm4dHfnYJguIqsP8WIakRLwbWGDMwN4YixdSfBoqJgcVj0C1xJQMjqPmygBlun5zrNSBG/NnL59g5pcIetiDsYSsPAeOsHrwdZ04LzPd14sLNCrI0Xfm4+jlM0+ZurEKrn3YZ+KoSwSJSk25Efp+d7JyuRi/j322ypx/X07fxfD7EVFgq3cFDyDjLCKnSjHfKLoikZQiK/4jj/PzTbuQoTSitMyCjXIc85QjeyDWIvVdGDORqpJ1IkQ9BrjfhXU0bLt+vRWrjOFoMJuS/rEJwgsJ1P5rtPK8XMXUspRl/JdVDHx+f8k0IvStH8J06hLjlaJRs/rYchx80IISprUeomF9D7pFciwMJMhy8o8BRsRIhSR+wP74Sh+83ueoEeX4eJE8M5E3okUDecz8LFSoiX5x8wYD6pqyBAXxEiV+ReAdCuOijAAAAAABJRU5ErkJggg==" />
+                </ui:ImageFound.Image>
+                <ui:ImageFound.Target>
+                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="1461eb9e-0609-4e17-82b9-a26f1a0481c5" Selector="&lt;html app='chrome.exe' title='Emlak İlanları, Kiralık, Satılık Emlak Fiyatları sahibinden.com&amp;apos;da' /&gt;" WaitForReady="COMPLETE">
+                    <ui:Target.TimeoutMS>
+                      <InArgument x:TypeArguments="x:Int32" />
+                    </ui:Target.TimeoutMS>
+                  </ui:Target>
+                </ui:ImageFound.Target>
+              </ui:ImageFound>
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="410,94" sap2010:WorkflowViewState.IdRef="LogMessage_49" Level="Info" Message="[BeginMessagePerform+&quot;Image exists ile click selector aranmıştır. Durum: &quot;+isImageExists_ClickSelector.ToString]" />
+              <If Condition="[isImageExists_ClickSelector]" DisplayName="If : isImageExists_ClickSelector" sap:VirtualizedContainerService.HintSize="410,874" sap2010:WorkflowViewState.IdRef="If_8">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <If.Then>
+                  <Sequence DisplayName="isImageExists_ClickSelector---TRUE" sap:VirtualizedContainerService.HintSize="376,378" sap2010:WorkflowViewState.IdRef="Sequence_29">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:ClickImage ContinueOnError="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click Image : ClickSelector" sap:VirtualizedContainerService.HintSize="334,156" sap2010:WorkflowViewState.IdRef="ClickImage_1" KeyModifiers="None" MouseButton="BTN_LEFT">
+                      <ui:ClickImage.CursorPosition>
+                        <ui:CursorPosition Position="Center">
+                          <ui:CursorPosition.OffsetX>
+                            <InArgument x:TypeArguments="x:Int32" />
+                          </ui:CursorPosition.OffsetX>
+                          <ui:CursorPosition.OffsetY>
+                            <InArgument x:TypeArguments="x:Int32" />
+                          </ui:CursorPosition.OffsetY>
+                        </ui:CursorPosition>
+                      </ui:ClickImage.CursorPosition>
+                      <ui:ClickImage.Image>
+                        <ui:ImageTarget Image="{x:Null}" Accuracy="0.8" Profile="Basic" TargetImageBase64="iVBORw0KGgoAAAANSUhEUgAAAE8AAAATCAYAAADReFAKAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAL/SURBVFhH7ZfNTxNBGMb9d/TigYseKilcNB48EGMiHtSDaGKJELBYwUgaJAZiogbTiBKVKkWqfJSyQMGEVkqh0CKhQGHlqwUk29KwJdjFksfZ7kpb2hOkXYJ9kyeZ2XlnJ/vLvPPMnsit6EFGB1MG3iGUgXcIZeAdQtLCq7ZDM8rAMc+gi7LjUrKcIyxJ4eXrljH3G5HgvPOorKGS5h1VSQjvO2rHt8AJ7ICdAL5q+5CTNPdoSjJ4F167YQmI4MTw2EdwU9UdGb+s/QkbE4I/wMJBs1jbDGFt2Yv6Dje6Zlkskb4/SLS5BZfDjZLq5OukUhLBM6Gkn4F/lxALrqN3elugt7GMV3UCvPzPXiztbUsxNlbQNuJHkG+HOLDBcOQxdrdhNQ7hfMI6qZU08GrGoF38E/lu37gNt3WLWI10OdgoMy6Wx8Njl2ion77HyRsNyHszgeYeK64o6nFKNYDWFR5gGD8tg8hTpvfMlARe1Cg4TI240Gj2wsXyfQKKnkTxEyoKb5eF4V0LTiv0kBOouRX9ULS40Tnlwxwp6yC/e0l4xqy4pjImrJVKSQCPGIUjxij2R4gYx4deXI2F1/AFsgd8OZtRNRTYA8Zt74CLgZdfZti3VmqVfnh1U7BEDrswGO86nLOiaB88OzwGUoLWIRTpYuG1QqYiJqMhcyMmE8bMACnvUhOaFoVz7z+AZ4LCFDUKzfOPyLrbhDOFRASExiUaB7OABsqTCI84tG1TTJmm0e7wYU3cwsykE3fKjzM88kehnReNwmXH9eImZD+MjhcYf2GVB0vcc3h0NQFernoYL34E40qeL91/4Z2YwC119H2pVprhDaPKREPX54C6Voese+3xl+IaO2pNs2iknHjWbMdL0tYabSh8/EmAx+eoLXhkmIFxjIa+cxAFlUZUfVuA2UlD87YD8qL07T4JDKMbOco2nFO2i+65X5Qwfr8N2aouyMv4XANy4nLJO8hzWbEeMmUnGaMgL23B2SI9mSPcE9MhCeAdH2XgHVg9+Au5GjxPnGlEugAAAABJRU5ErkJggg==" />
+                      </ui:ClickImage.Image>
+                      <ui:ClickImage.Target>
+                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="465c523b-9bcc-4f41-897c-9fa8eca2061f" Selector="&lt;html app='chrome.exe' title='Emlak İlanları, Kiralık, Satılık Emlak Fiyatları sahibinden.com&amp;apos;da' /&gt;" WaitForReady="COMPLETE">
+                          <ui:Target.TimeoutMS>
+                            <InArgument x:TypeArguments="x:Int32" />
+                          </ui:Target.TimeoutMS>
+                        </ui:Target>
+                      </ui:ClickImage.Target>
+                    </ui:ClickImage>
+                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,94" sap2010:WorkflowViewState.IdRef="LogMessage_50" Level="Info" Message="[BeginMessagePerform+&quot;İmage exists ile selector bulunmuştur ve click image ile tıklanmıştır.&quot;]" />
+                  </Sequence>
+                </If.Then>
+                <If.Else>
+                  <Sequence DisplayName="isImageExists_ClickSelector---FALSE" sap:VirtualizedContainerService.HintSize="376,313" sap2010:WorkflowViewState.IdRef="Sequence_30">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,94" sap2010:WorkflowViewState.IdRef="LogMessage_51" Level="Info" Message="[BeginMessagePerform+&quot;Selector image exists ile bulunamamıştır.&quot;]" />
+                    <Throw DisplayName="Throw : Selector---YOK" Exception="[new Exception(&quot;Ara butonuna click yapılamamıştır.&quot;)]" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="Throw_7" />
+                  </Sequence>
+                </If.Else>
+              </If>
+            </Sequence>
+          </If.Else>
+        </If>
+        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="486,94" sap2010:WorkflowViewState.IdRef="LogMessage_52" Level="Info" Message="[BeginMessagePerform+&quot;ClickSelector: Ara Button Click sekansından çıkış yapılmıştır.&quot;]" />
+      </Sequence>
+      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="484,94" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Info" Message="[BeginMessagePerform+&quot;sekanstan çıkış yapılmıştır.&quot;]" />
+    </Sequence>
+    <Sequence DisplayName="After Perform" sap:VirtualizedContainerService.HintSize="546,83" sap2010:WorkflowViewState.IdRef="Sequence_4">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="x:String" Default="[&quot;Workflow: &quot;+in_WorkflowName+&quot; --&gt; After Perform sekans, &quot;]" Name="BeginMessageAfterPerform" />
+      </Sequence.Variables>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="388,92" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Info" Message="[BeginMessageAfterPerform+&quot;sekansa giriş yapılmıştır.&quot;]" />
+      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="388,92" sap2010:WorkflowViewState.IdRef="LogMessage_6" Level="Info" Message="[BeginMessageAfterPerform+&quot;sekanstan çıkış yapılmıştır.&quot;]" />
+    </Sequence>
+  </Sequence>
+</Activity>
